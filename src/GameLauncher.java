@@ -21,9 +21,11 @@ public class GameLauncher extends JFrame {
 
         JButton simonButton = new JButton("Simon");
         JButton cardButton = new JButton("CardFlipper");
+        JButton pacButton = new JButton("PacMan");
         JPanel buttonPanel = new JPanel(new GridLayout(3, 1));
         buttonPanel.add(simonButton);
         buttonPanel.add(cardButton);
+        buttonPanel.add(pacButton);
         add(buttonPanel, BorderLayout.CENTER);
 
 
@@ -35,6 +37,12 @@ public class GameLauncher extends JFrame {
         cardButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new MemoryGame(); //yeha new main method vako class name
+            }
+        });
+       pacButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Pacman pacman = new Pacman();
+                pacman.setVisible(true);
             }
         });
         setVisible(true);
