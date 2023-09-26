@@ -1,10 +1,9 @@
-import card.CardGameActionLIstener;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class GameLauncher extends JFrame {
+    private GamePanel gamePanel;
 
     public GameLauncher() {
 
@@ -22,10 +21,12 @@ public class GameLauncher extends JFrame {
         JButton simonButton = new JButton("Simon");
         JButton cardButton = new JButton("CardFlipper");
         JButton pacButton = new JButton("PacMan");
+        JButton hockeyButton = new JButton("Hockey");
         JPanel buttonPanel = new JPanel(new GridLayout(3, 1));
         buttonPanel.add(simonButton);
         buttonPanel.add(cardButton);
         buttonPanel.add(pacButton);
+        buttonPanel.add(hockeyButton);
         add(buttonPanel, BorderLayout.CENTER);
 
 
@@ -45,6 +46,25 @@ public class GameLauncher extends JFrame {
                 pacman.setVisible(true);
             }
         });
+
+        hockeyButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                getContentPane().removeAll();
+                gamePanel = new GamePanel();
+
+                getContentPane().add(gamePanel);
+
+                revalidate();
+                repaint();
+
+                gamePanel.gameStarted = true;
+                gamePanel.gameOver = false;
+                gamePanel.gameThread = new Thread(gamePanel);
+                gamePanel.gameThread.start();
+            }
+        });
+
         setVisible(true);
     }
 
